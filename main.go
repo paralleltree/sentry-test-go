@@ -35,13 +35,20 @@ func doSomething1() error {
 }
 
 func doSomething2() error {
-	if err := somethingWentWrong(); err != nil {
+	if err := doSomething3(); err != nil {
 		return xerrors.Errorf("doSomething2: %w", err)
 	}
 	return nil
 }
 
+func doSomething3() error {
+	if err := somethingWentWrong(); err != nil {
+		return xerrors.Errorf("doSomething3: %w", err)
+	}
+	return nil
+}
+
 func somethingWentWrong() error {
-	err := errors.New("internal error: param1: b")
+	err := errors.New("internal error: param1: c")
 	return xerrors.Errorf("oops: %w", err)
 }
